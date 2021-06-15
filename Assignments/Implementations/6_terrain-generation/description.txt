@@ -1,0 +1,25 @@
+Description
+
+In the lecture, we discussed several approaches to generating terrains. In this assignment, you will design a system for generating a specific type of terrain of your choice (islands, mountain ranges, river deltas, etc). It is very important that you base your system on solid research, so you will need to find sources relating to the generation of the type of terrain you have chosen. You should write a document of at most three pages containing at least the following information:
+
+The type of terrain you want to generate. Discuss the distinctive features of this type of terrain, and show some (real-world) examples.
+A description of a system that will generate the given type of terrain. What is the input, and what is the output? What are the steps to generate the output from the given input? How will you ensure some randomness in the generated terrains?
+A discussion of why the chosen method is suitable for the chosen type of terrain. Does your method generalise easily, or is it very specific?
+A description of the parameters of your system, and the expected range of possible outputs.
+The sources you are basing your design on.
+Any libraries you plan on using. Depending on the type of system you want to implement, we may allow the use of libraries that take care of some of the smaller aspects (e.g. some structured noise generator library may be allowed if you want to add a small amount of texture to an already finished terrain).
+Feel free to include some figures outside of the three-page limit.
+
+It is worth keeping in mind that in the next assignment, you will have to implement the system you designed. Think about whether this will be feasible as you work on this assignment, keeping in mind that you will be allowed to use a visualisation tool of your choice, as long as a compiled version runs on Windows 10 without installing any libraries (e.g. Unity; we will also provide a simple Python tool for visualisation that you can use if you want). That said, your proposed system should have sufficient complexity; "a flat, featureless desert" is not an acceptable type of terrain to try to generate. You should also think about the expected performance of your system; don't choose a method that takes hours to generate something acceptable.
+
+
+
+Evaluation
+
+Evaluation criteria are:
+
+Suitability: the method you plan to use should be appropriate for generating the chosen type of terrain. This suitability should have some theoretical or empirical foundation, preferably from academic literature. This is the most important aspect of this assignment.
+Detail: are all necessary details described? The document should give enough information to start on the implementation directly.
+Realism: is the project realistically possible in the available time?
+Ambition: is the project challenging enough? Both the type of terrain and the method for generating it should not be trivial. For instance, most types of fractal terrain generation will be too easy to implement.
+Please feel free to ask questions in the lectures or on Teams if you are unsure about any aspects of the system you have in mind.
