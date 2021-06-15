@@ -1,0 +1,3 @@
+[submodule "7_island-generation"]
+	path = 7_island-generation
+	url = https://github.com/ottomattas/INFOMAIGT-PCG.git
