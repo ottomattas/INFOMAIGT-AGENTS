@@ -1,0 +1,50 @@
+Homework quiz
+--------------
+In this quiz, we ask you to answer a series of related questions about Markov Decision processes.
+--------------
+Question 1 (1 point):
+Give an example of a Markov decision process. 
+Describe it only on a very high level without giving details.
+(i.e.: A robot navigating Mars.)
+The example should be fun and unique.
+(It should not be a computer game.)
+Try to find an example that no other student has as well.
+( Question 2-10 will ask you to provide more details. )
+
+--------------
+Question 2 (1 point):
+Describe the state space of your MDP.
+
+--------------
+Question 3 (1 point):
+Describe the granularity of the time steps of your MDP.
+Is your MDP episodic of continuing?
+
+--------------
+Question 4 (1 point):
+Describe the agent and its possible actions of your MDP.
+
+--------------
+Question 5 (1 point):
+Describe the rewards of your MDP.
+Please describe explicit numeric values.
+
+--------------
+Question 6 (1 point):
+Describe the dynamics of your MDP.
+
+--------------
+Question 7 (1 point):
+Justify why the markov property holds wth your description.
+
+--------------
+Question 8 (1 point):
+Describe a short example trajectory of your MDP.
+
+--------------
+Question 9 (1 point):
+Describe a possible policy of the agent.
+
+--------------
+Question 10 (1 point):
+Is it conceivable that your agent uses some planning strategies?

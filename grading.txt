@@ -1,0 +1,17 @@
+There will be eight small homework assignments with theory exercises (H1-H8), and seven implementation projects. The final grade will be a weighted sum of the individual grades:
+
+H1 - H8: 10% together
+Bandit Agent: 10%
+Monte-Carlo Tree Search: 10%
+Neural Network Part 1: 10%
+Neural Network Part 2: 15%
+L-systems: 10%
+Terrain Generation Part 1: 15%
+Terrain Generation Part 2: 20%
+
+
+Retakes
+
+Every student is allowed to resubmit two implementation projects. Those will replace your previous submission, if you improve in score.
+
+Please send your submissions by email to both T.Miltzow@uu.nl and J.L.Vermeulen@uu.nl. The deadline is 16 July at 18:00.

@@ -1,0 +1,87 @@
+Question 1: What is the general idea of policy iteration?
+
+ 
+
+solution: Use a policy to compute a value function and
+use the value function in order to improve the policy.
+
+ 
+
+Question 2: What is the purpose of using the Q-function instead of the state value function?
+
+ 
+
+solution: As we do not know the behavior of the environment, we do not know what 
+state we will end up in after performing an action.
+Thus, we cannot choose an action greedily, if we only know the value of each state.
+Therefore, we learn the value of the state-action pair.
+
+ 
+
+Question 3: Consider the SARSA algorithm. What is given, what is sampled by the policy and what is sampled by the environment?
+
+ 
+
+solution: In SARSA, we are given state action, s_1, a_1, which we want to update.
+We sample the reward r and state s_2 from the environment and action a_2 from our policy.
+
+ 
+
+Question 4: Why does the greedy improvement not work for the policy iteration?
+
+ 
+
+solution: Because, there will be unseen states that will never be updated.
+
+ 
+
+Question 5: What is the problem of the eps-greedy policy improvement?
+
+ 
+
+solution: Some states s will get a lower value, as they are close to a bad state s'.
+Even if s is great it might get assigned a lower value-estimate as one could randomly
+go to s' from s.
+
+ 
+
+Question 6: What is the first idea presented in the lecture to overcome the 
+problem with eps-greedy?
+
+ 
+
+solution: Using eps-decay.
+
+ 
+
+Question 7: Given the true state value function q_\pi and the dynamics p, give a formula that 
+computes the value function v_\pi
+
+ 
+
+solution: v_\pi(s) = \max_a q_\pi(s,a)
+(Note that the dynamics p, are not needed here. :p)
+
+ 
+
+Question 8: Give the update rule used in the SARSA algorithm.
+
+ 
+
+solution: Q(s,a) = Q(s,a) + \alpha (r + \gamma Q(s',a') + )
+
+ 
+
+Question 9: What is the key idea of Q-learning?
+
+ 
+
+solution: To separate exploration and exploitation.
+
+ 
+
+Question 10: What is an MDP with only one state?
+
+ 
+
+solution: A multi-armed bandit problem.

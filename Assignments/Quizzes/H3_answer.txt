@@ -1,0 +1,46 @@
+Question 1: What does the term "model-free" from the lecture refer to?
+
+solution: It means that the dynamics of the MDP are not known or not used.
+
+Question 2: What does the term bootstrapping refer to?
+
+solution: Bootstrapping means that we us an estimate to improve our current estimate.
+
+Question 3: What does it mean that TD can learn "online"?
+
+solution: It is possible to update the estimate value function after every step.
+
+Question 4: Why has Monte Carlo learning a higher variance?
+
+solution: Because randomness will be introduced in every step until the terminal state.
+
+Question 5: Why is TD-learning said to have bias and what is meant by this?
+
+solution: The update for V(s_t) is based on the return and on an estimate of V(s_{t+1}).
+But V(s_{t+1}) is not necessarily correct either.
+
+Question 6: Why is TD-learning more sensitie to initial values?
+
+solution: Because it only learns from the next step into the future 
+and grounds itself only at terminal states.
+
+Question 7: What is the difference of the
+expectation and the average?
+
+solution: expectation is a mathematical well-defined quantity and the average 
+is just based on finite samples.
+
+Question 8: Once, we fix a policy a markov decision process becomes?
+
+solution: A Markov Reward Process.
+
+Question 9: What does the law of large numbers refer to?
+
+solution: Under certain circumstances does the average converge to the expectation,
+assuming that infinitely many samples are drawn.
+
+
+Question 10: What is the role of alpha in lecture 6?
+
+solution: It describes by how much we update the approximate value function in each step.
+
