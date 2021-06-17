@@ -1,0 +1,29 @@
+
+
+Generative adversarial networks
+-----------------------------
+Assignment 1
+Name three problems we might encounter if we applied GANs to Mario level generation.
+* Small data set. The size and variety of the data set makes it difficult to train a proper model.
+* Measuring performance of the model. Classical metrics like accuracy do not apply as we want our system to be expressive and not completely accurate.
+* Controlling difficulty of a level. The generator might create a level which is extremely difficult or extremely simple.
+
+Assignent 2
+Name three things we could use style-based GANs for in games.
+* NPCs to have more interesting visual (faces) and character features (RPG).
+* Level generation through combining high- and low-level features.
+* Fit textures on a level to a style from another level.
+* Visual filtering to add a new visual style to the game. GTA -> real. GTA -> minecraft
+* (Future) Music generation based on the specific play style of music.
+
+Assignment 3
+Name three things we might use texture synthesis for in games.
+* Adapt the generated texture to the context like season changes or dream-like sequences.
+* Anthropomorphic character creation like a tree with a face or a sphinx.
+* In-game paintings or objects. Supervillain wants to get rid of all the noses in the world.
+
+Assignment 4
+Name three additional statistics that we could use in our agent-based fitness function.
+* Ratio of successful runs.  We don't want a 100% success to keep it interesting. Human-like AI trained.
+* Ratio of points collected from different sources. We want to maybe balance these out.
+* Ratio of time taken to succeed and the length of the level.
