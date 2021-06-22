@@ -8,9 +8,15 @@ Why does the answer to the previous question not apply when k = 3?
 
 Assignment 3
 What do we need to take care of when we apply the rules of our grammar?
+* Crossing paths - guarantee that objects do not intersect with themselves;
+* Termination - guarantee that at some point we stop.
 
 Assignment 4
 Name another technique that we’ve seen before that could be used to explore the parameter space.
+* Evolutionary computing and genetic programming.
 
 Assignment 5
 Name two other types of content that could be generated through the same system with minimal adjustment.
+* Cars;
+* Furniture (restricted to specific types of furniture);
+* Clothes.
