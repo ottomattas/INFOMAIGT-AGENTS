@@ -1,0 +1,16 @@
+Inverse procedural modeling
+-----------------------------
+Assignment 1
+Consider any regular k-gon P for k > 3 and a line l. If T is the set of rigid transformations (translations and rotations), how much of the perimeter of P is r-similar to l?
+
+Assignment 2
+Why does the answer to the previous question not apply when k = 3?
+
+Assignment 3
+What do we need to take care of when we apply the rules of our grammar?
+
+Assignment 4
+Name another technique that we’ve seen before that could be used to explore the parameter space.
+
+Assignment 5
+Name two other types of content that could be generated through the same system with minimal adjustment.
