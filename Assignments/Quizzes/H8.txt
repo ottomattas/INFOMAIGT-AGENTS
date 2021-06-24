@@ -3,8 +3,20 @@ Inverse procedural modeling
 Assignment 1
 Consider any regular k-gon P for k > 3 and a line l. If T is the set of rigid transformations (translations and rotations), how much of the perimeter of P is r-similar to l?
 
+x being the length of a side of the k-gon
+p = k * x
+pnew = k  * (x-2r)
+
+p% =  pnew  / p = k max[( x - 2r),0]  / k x = (x - 2r) / x 
+
+eg. side is 10, r = 1
+p% = 80%
+
 Assignment 2
 Why does the answer to the previous question not apply when k = 3?
+* there are points on the edge which aren't described with the formula which are also in close proximity to a corner point
+
+it does not apply because in this case the circles are intersecting with other sides -> you can't apply the same formula
 
 Assignment 3
 What do we need to take care of when we apply the rules of our grammar?
@@ -20,3 +32,29 @@ Name two other types of content that could be generated through the same system 
 * Cars;
 * Furniture (restricted to specific types of furniture);
 * Clothes.
+
+
+
+PCG in the Wild
+-----------------------------
+Assignment 1
+Consider the techniques we have discussed in previous lectures. For each one, indicate whether you think they would be useful for generating a map for Age of Empires II. Briefly motivate each answer.
+
+* Grammars - no. No way to model spatial structures directly.
+* Agent-based - we could generate a level in stages (an agent for each type of object) as this works well in the context of AoEII.
+* Simulation - (We want realism with simulation). No, there is no physical process to simulate here as we want a map that is great from the gameplay perspective. The realistic map might be bad from gameplay perspective.
+* Genetic - maybe. It would be difficult to encode the genome for a level to have the full representation. We can on the other hand use the input scripts in the genetic programming principle. 
+* Markov chains - no. A Markov chain assigns a value for a (high-level) tile and those generated tiles are probably.
+* GANs - yes. Generation is easy because of the scripts - we can do a lot of learning. The discriminator could be embedded with a good level design. Also, there are not too many hard requirements on a level in AoEII. GANs can be easily modified manually.
+* Inverse Procedural Modelling - yes/no. Maybe we draw a partial style map and a new one is generated.
+
+Assignment 2
+Write a short reflection on the discrepancy between theoretical PCG research and its application in actual games. Why do you think the techniques we discussed are not used more in practice? What key elements of PCG techniques would need to be developed further for this to change? Where do you think
+the techniques could already be applied more?
+* For some reason, PCG is not usually applied fully. It is often just automating tedious tasks.
+
+
+
+How to use the application!
+Share presets. Tell some parameter settings.
+Describe the ways in which we deviated from our original design.
