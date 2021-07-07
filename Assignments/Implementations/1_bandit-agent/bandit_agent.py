@@ -1,3 +1,13 @@
+'''Finally, a small hint: your agent will need to do a lot of simulations
+based on a random agent. It just so happens that a random agent is already
+implemented, as it is the opponent you will be playing against.
+An easy way to simulate a game is to create a copy of the board (look up 
+how to create a deep copy in Python, to avoid modifying the original
+ unintentionally) and then use the Game.from_board method to create 
+ a new game from the given board state, using two new random agents. 
+ Then you can just play the game by calling Game.play(), 
+ which returns the agent that won the game, or None if it was a tie.'''
+
 # Put your name and student ID here before submitting!
 # Name (student ID)
 
