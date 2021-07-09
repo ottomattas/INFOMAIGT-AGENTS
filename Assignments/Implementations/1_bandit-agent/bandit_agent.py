@@ -9,7 +9,7 @@ how to create a deep copy in Python, to avoid modifying the original
  which returns the agent that won the game, or None if it was a tie.'''
 
 # Put your name and student ID here before submitting!
-# Name (student ID)
+# Otto Mättas (6324363)
 
 import game as g
 from random_agent import RandomAgent
