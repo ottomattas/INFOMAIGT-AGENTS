@@ -1,5 +1,5 @@
 # Put your name and student ID here before submitting!
-# Name (student ID)
+# Otto Mättas (6324363)
 
 from random_agent import RandomAgent
 
