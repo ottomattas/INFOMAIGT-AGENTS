@@ -1,5 +1,5 @@
 # Put your name and student ID here before submitting!
-# Name (ID)
+# Otto Mättas (6324363)
 
 import random
 
