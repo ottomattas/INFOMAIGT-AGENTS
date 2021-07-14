@@ -22,7 +22,7 @@ class BanditAgent:
         self.timelimit = timelimit
         self.id = id
 
-    def make_move(self, game):
+    def make_move(self, g):
         start = time.perf_counter()
 
         # run until time is up
@@ -30,8 +30,21 @@ class BanditAgent:
             # replace the line below with your actual implementation!
             break
 
+            '''
+            # returns a random free position
+            def random_free(self):
+                while True:
+                    x = random.randrange(0, self.shape[0])
+                    y = random.randrange(0, self.shape[1])
+
+                    if self.is_free((x, y)):
+                        return (x, y)
+            '''
+
         # return the best move you've found here
-        return game.board.random_free()
+        return g.board.random_free()
+
+    
 
     def __str__(self):
         return f'Player {self.id} (BanditAgent)'
