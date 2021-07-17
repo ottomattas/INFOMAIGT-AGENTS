@@ -1,5 +1,0 @@
-1 - Multi-armed Bandits Lecture 1 https://www.youtube.com/watch?v=fJ_nioL-4lQ
-2 - Tree Search Lecture 2 https://www.youtube.com/watch?v=7GTR4qui-uo
-3 - Intro to RL Lecture 3 https://www.youtube.com/watch?v=HbB2C9QzfUo
-4 - Lecture 4a Learning from Data https://www.youtube.com/watch?v=cooaf8aBXkA
-5 - Lecture 4b: Markov Decision Process https://www.youtube.com/watch?v=PRwUa7r
