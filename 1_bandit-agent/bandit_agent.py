@@ -34,7 +34,7 @@ class BanditAgent:
                 print("Deepcopy of the board is \n", b)
 
                 # Check the free positions
-                free_positions = g.board.free_positions()
+                free_positions = b.free_positions()
                 print("Free positions are \n", free_positions)
 
                 # Choose a random next action
