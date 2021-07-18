@@ -25,9 +25,12 @@ class BanditAgent():
         #print("Epsilon decay list:", epsilon_array)
 
         # Create arrays for evaluating the position
-        position_win_probability = np.zeros(number_of_possible_moves)
-        position_score = np.zeros(number_of_possible_moves)
-        position_counter = np.zeros(number_of_possible_moves)
+        # position_win_probability = np.zeros(number_of_possible_moves)
+        # position_score = np.zeros(number_of_possible_moves)
+        # position_counter = np.zeros(number_of_possible_moves)
+        position_win_probability = np.full(number_of_possible_moves,0)
+        position_score = np.full(number_of_possible_moves,0)
+        position_counter = np.full(number_of_possible_moves,0)
 
         # run until time is up
         while time.perf_counter() - start < self.timelimit / 1000:
