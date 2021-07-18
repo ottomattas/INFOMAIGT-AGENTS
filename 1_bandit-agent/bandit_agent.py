@@ -52,8 +52,8 @@ class BanditAgent:
                 print("The return of the from_board is \n", b, g.objectives, simulation_players, g.print_board)
 
                 # Run the game, player who won is returned
-                g.play()
-                print("Returned player from game:", player)
+                player = g.play()
+                print("Returned player from game:", player.id)
                 
                     # if player 1 , add position_value +1
                     #if g.player.id == 1:
