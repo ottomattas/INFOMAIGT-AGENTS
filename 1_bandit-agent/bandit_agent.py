@@ -6,49 +6,101 @@ from random_agent import RandomAgent
 
 import random, copy, time
 import numpy as np
+import sys
+sys.setrecursionlimit(100000)
 
 class BanditAgent:
     def __init__(self, timelimit, id):
         self.timelimit = timelimit
         self.id = id
-        self.epsilon = 0
 
-    def make_move(self, g, epsilon):
+    def make_move(self, g):
         start = time.perf_counter()
-
+        epsilon = 0
+        
         # run until time is up
         while time.perf_counter() - start < self.timelimit / 1000:
-            # replace the line below with your actual implementation!
-            #break
+            # print(epsilon)
+            # free_positions = g.board.random_free()
+            # print(free_positions)
+            # break
 
             # start rollout
+            
+            # if epsilon < random.value, then explore
+            if random.random() > epsilon:
+                # Copy the board for simulation
+                b = copy.deepcopy(g.board)
+                print("Deepcopy of the board is \n", b)
 
-                # if epsilon < random.value, then explore
-                if epsilon < random() :
+                # Check the free positions
+                free_positions = g.board.free_positions()
+                print("Free positions are \n", free_positions)
 
-                    # look at possible actions, choose random one
-                    next_move = g.board.random_free()
-                    print(next_move)
+                # Choose a random next action
+                next_move = random.choice(free_positions)
+                print("Random next_move is", next_move)
 
-                        # do the move on the deepcopy of the board
-                        
+                # Take the action on the copied board
+                b.place(next_move, 1)
+                print("Action has been taken as the board shows \n", b)
 
-                                # create a new game instance (play) using two random agents and the deepcopied board (from_board)
-                                
-                                # game finishes, player who won
+                # Set parameters for the simulation game
+                # Use two random agents and the deepcopy of the board
+                simulation_players = [RandomAgent(1), RandomAgent(2)]
+                g.from_board(b, g.objectives, simulation_players, g.print_board)
+                print("The return of the from_board is \n", b, g.objectives, simulation_players, g.print_board)
 
-                                # if player 1 , add position_value +1
+                # Run the game, player who won is returned
+                g.play()
+                print("Returned player from game:", player)
+                
+                    # if player 1 , add position_value +1
+                    #if g.player.id == 1:
+                        #position_value =+ 1
 
-                                # if player 2, add position_value 0
+                    # if player 2, add position_value 0
+                    #elif g.player.id == 2:
+                        #position_value =+ 0
 
-                                # if draw, add position_value 0.5
+                    # if draw, add position_value 0.5
+                    #else:
+                        #position_value =+ 0,5
+                    # position_counter=+ #how many times was this position chosen
 
-                                # position_counter=+ #how many times was this position chosen
+                    #position_counter =+ 1
 
-                    # calculate the average position_value / position_counter, then update the array of chances of winning for the board                
+            # calculate the average position_value / position_counter, then update the array of chances of winning for the board                
 
-                # if epsilon => random.value, then exploit
+            # if epsilon => random.value, then exploit
+            if random.random() <= epsilon:
+                # Copy the board for simulation
+                b = copy.deepcopy(g.board)
+                print("Deepcopy of the board is", b)
 
+                # Check the free positions
+                free_positions = g.board.free_positions()
+                print("Free positions are", free_positions)
+
+                # Choose a random next action
+                start_position = random.choice(free_positions)
+                print("Random start position is", start_position)
+
+                # Take the action on the copied board
+                b.place(start_position, 1)
+                print("Action has been taken as the board shows:", b)
+
+                # create a new game instance (play) using two random agents and the deepcopied board (from_board)
+                g.from_board(b, g.objectives, g.players, g.print_board)
+                # print("Instantiate a new board for play: ", b)
+                # print("Instantiate objectives for play: ", g.objectives)
+                # print("Instantiate players for play: ", g.players)
+                # print("Instantiate print_board for play: ", g.print_board)
+
+                # game finishes, player who won is returned
+                g.play()
+                print("Returned player from game:", player)
+                break
                     # look at possible actions, choose best one (randomly if equal bests)
 
                             # do the move on the deepcopy of the board
