@@ -9,36 +9,78 @@ import multiprocessing as mp
 from collections import Counter
 from itertools import starmap
 import tensorflow as tf
+from sklearn.preprocessing import OneHotEncoder
 
 def main(args):
     if args.input:
+
         # Load dataset
         data = read_games(args.input)
+        #print("Game 1 array is \n", data[0])
 
-        # Reshape data
-        x = []
-        y = []
-        game = 
+        # Count the board states
+        board_state_count = 0
         for game in data:
-            winner = g.victory(movesToBoard(game))
-            for move in range(len(game)):
-                x.append(movesToBoard(game[:(move + 1)]))
-                y.append(winner)
+            for board in game:
+                board_state_count += 1
+                #print("Board state count is ",board_state_count)
 
-        x = np.array(X).reshape((-1, 9))
-        y = tf.keras.to_categorical(y)
-        
+        # Create array for the input layer
+        # Columns: each possible move, represented in one-hot encoding
+        # Rows: each possible board state
+        x_train = np.zeros((board_state_count,75),dtype=int)
+        #print("X train is \n",x_train)
 
-        # Convert targets into one-hot encoded format
-        one_hot_players = tf.keras.utils.to_categorical([1, 2, 0], num_classes=3)
-        one_hot_players = tf.constant(one_hot_players, shape=[3, 3])
+        # Create array for the output layer
+        # has the chance of winning from a board state
+        y_train = np.zeros(board_state_count,dtype=int)
+        #print("Y train is \n",y_train)
 
-        # Normalise data
+        ##########################
+        # Define the input layer #
+        ##########################
+        # Create indexes for game and board
+        game_index = 0
+        board_index = 0
 
-        # Define the input layer
+        # Loop over all games and boards
+        for winner, game in data:
+            game_index += 1
+            for player, move, board in game:
+                print("Player is ", player)
+                print("Move is ", move)
+                print("Board is\n", board)
+                print("Winner is ", winner)     
 
-        # Define the output layer
+                # Flatten the board
+                board = board.flatten()
+                print("Flattened board is\n", board)     
 
+                # One-hot encoding for the board 
+                onehot_encoder = OneHotEncoder(sparse=False)
+                # board_encoded = onehot_encoder.fit_transform(board)
+                # board_encoded = onehot_encoder.fit_transform(board.reshape(-1, 1))             
+                board = board.reshape(len(board), 1)
+                print("Board is reshaped into \n", board)
+                board_encoded = onehot_encoder.fit_transform(board) 
+                print("Board is encoded into \n", board_encoded)
+                
+                # # Flatten the encoded board
+                # board_encoded = board_encoded.flatten()
+                # print("The flattened encoded board is \n",board_encoded)
+                # print("Shape of the flattened encoded board is \n", board_encoded.shape)
+
+                board_index += 1
+                print("This is game nr: ", game_index, "\nThis is board nr: ", board_index)
+
+        ###########################
+        # Define the output layer #
+        ###########################
+
+
+        ############
+        # Training #
+        ############
         # Create the tf.keras.Sequential model by stacking layers.
         # Choose an optimizer and loss function for training.
         model = tf.keras.models.Sequential([
@@ -59,25 +101,9 @@ def main(args):
         # Checks the models performance
         #model.evaluate(x_test, y_test, verbose=2)
 
-        # Save the model
-
+        # Save the model     
         
-
-        ######
-        # NN #
-        ######
-
-        # Load and prepare MNIST dataset
-        mnist = tf.keras.datasets.mnist
-
-        (x_train, y_train),(x_test, y_test) = mnist.load_data()
-        x_train, x_test = x_train / 255.0, x_test / 255.0
-
-        
-
-        
-
-        
+        # Make a prediction   
 
     work = []
     for i in range(args.games):
