@@ -8,11 +8,76 @@ import numpy as np
 import multiprocessing as mp
 from collections import Counter
 from itertools import starmap
+import tensorflow as tf
 
 def main(args):
     if args.input:
+        # Load dataset
         data = read_games(args.input)
-        # call some function to do your preprocessing and training here
+
+        # Reshape data
+        x = []
+        y = []
+        game = 
+        for game in data:
+            winner = g.victory(movesToBoard(game))
+            for move in range(len(game)):
+                x.append(movesToBoard(game[:(move + 1)]))
+                y.append(winner)
+
+        x = np.array(X).reshape((-1, 9))
+        y = tf.keras.to_categorical(y)
+        
+
+        # Convert targets into one-hot encoded format
+        one_hot_players = tf.keras.utils.to_categorical([1, 2, 0], num_classes=3)
+        one_hot_players = tf.constant(one_hot_players, shape=[3, 3])
+
+        # Normalise data
+
+        # Define the input layer
+
+        # Define the output layer
+
+        # Create the tf.keras.Sequential model by stacking layers.
+        # Choose an optimizer and loss function for training.
+        model = tf.keras.models.Sequential([
+        tf.keras.layers.Flatten(input_shape=(28, 28)),
+        tf.keras.layers.Dense(128, activation='relu'),
+        tf.keras.layers.Dropout(0.2),
+        tf.keras.layers.Dense(10, activation='softmax')
+        ])
+
+        # Compile the model
+        model.compile(optimizer='adam',
+                    loss='sparse_categorical_crossentropy',
+                    metrics=['accuracy'])
+        
+        # Adjust the model parameters to minimize the loss
+        model.fit(x_train, y_train, epochs=1)
+
+        # Checks the models performance
+        #model.evaluate(x_test, y_test, verbose=2)
+
+        # Save the model
+
+        
+
+        ######
+        # NN #
+        ######
+
+        # Load and prepare MNIST dataset
+        mnist = tf.keras.datasets.mnist
+
+        (x_train, y_train),(x_test, y_test) = mnist.load_data()
+        x_train, x_test = x_train / 255.0, x_test / 255.0
+
+        
+
+        
+
+        
 
     work = []
     for i in range(args.games):
