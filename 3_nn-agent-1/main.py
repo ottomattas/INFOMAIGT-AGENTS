@@ -20,25 +20,24 @@ def main(args):
 
         # Count the board states
         board_state_count = 0
-        for game in data:
-            for board in game:
+        # For each _ element, and game element
+        for _, game in data:
+            # For each _ element as only the number of elements is relevant
+            for _, _, _ in game:
                 board_state_count += 1
                 #print("Board state count is ",board_state_count)
 
         # Create array for the input layer
-        # Columns: each possible move, represented in one-hot encoding
-        # Rows: each possible board state
+        # (Columns: each possible move, represented in one-hot encoding
+        # Rows: each possible board state)
         x_train = np.zeros((board_state_count,75),dtype=int)
-        #print("X train is \n",x_train)
+        print("X train is \n",x_train)
 
         # Create array for the output layer
-        # has the chance of winning from a board state
+        # (For each board state, save the winner)
         y_train = np.zeros(board_state_count,dtype=int)
         #print("Y train is \n",y_train)
 
-        ##########################
-        # Define the input layer #
-        ##########################
         # Create indexes for game and board
         game_index = 0
         board_index = 0
@@ -50,60 +49,119 @@ def main(args):
                 print("Player is ", player)
                 print("Move is ", move)
                 print("Board is\n", board)
-                print("Winner is ", winner)     
+                print("Winner is ", winner)
 
-                # Flatten the board
-                board = board.flatten()
-                print("Flattened board is\n", board)     
+                ##########################
+                # Create the input layer #
+                ##########################
+                # For each player, we want to look it from their perspective.
+                # Set each player's move as 0 0 1 in x_train.
 
-                # One-hot encoding for the board 
-                onehot_encoder = OneHotEncoder(sparse=False)
-                # board_encoded = onehot_encoder.fit_transform(board)
-                # board_encoded = onehot_encoder.fit_transform(board.reshape(-1, 1))             
-                board = board.reshape(len(board), 1)
-                print("Board is reshaped into \n", board)
-                board_encoded = onehot_encoder.fit_transform(board) 
-                print("Board is encoded into \n", board_encoded)
+                # Define a list for appending the one-hot encoded players    
+                lst = []
+
+                # If player 1 move
+                if player == 1:
+                    for x in range(5):
+                        for y in range(5):
+                            # When position value is 1 (player 1 move)
+                            if board[x, y] == 1:
+                                # Append 0 0 1
+                                lst.append(0)
+                                lst.append(0)
+                                lst.append(1)
+                            # When position value is 2 (player 2 move)
+                            elif board[x, y] == 2:
+                                # Append 0 1 0
+                                lst.append(0)
+                                lst.append(1)
+                                lst.append(0)
+                            # When position value is 0 (no player move yet)
+                            else:
+                                # Append 1 0 0
+                                lst.append(1)
+                                lst.append(0)
+                                lst.append(0)
+                    # Save the one-hot encoded list in the x_train array
+                    # at position board_index
+                    x_train[board_index] = np.array(lst)
+                    print("After player 1 move, encoded board is now \n", x_train[board_index])
+                    print("After player 1 move, x_train is now \n", x_train)
                 
-                # # Flatten the encoded board
-                # board_encoded = board_encoded.flatten()
-                # print("The flattened encoded board is \n",board_encoded)
-                # print("Shape of the flattened encoded board is \n", board_encoded.shape)
+                # If player 2 move
+                else:
+                    for x in range(5):
+                        for y in range(5):
+                            # When position value is 2 (player 2 move)
+                            if board[x, y] == 2:
+                                # Append 0 0 1
+                                lst.append(0)
+                                lst.append(0)
+                                lst.append(1)
+                            # When position value is 1 (player 1 move)
+                            elif board[x, y] == 1:
+                                # Append 0 1 0
+                                lst.append(0)
+                                lst.append(1)
+                                lst.append(0)
+                            # When position value is 0 (no player move yet)
+                            else:
+                                # Append 1 0 0
+                                lst.append(1)
+                                lst.append(0)
+                                lst.append(0)
+                    # Save the one-hot encoded list in the x_train array
+                    # at position board_index
+                    x_train[board_index] = np.array(lst)
+                    print("After player 2 move, encoded board is now \n", x_train[board_index])
+                    print("After player 2 move, x_train is now \n", x_train)
+
+
+                ###########################
+                # Create the output layer #
+                ###########################
+                # If draw
+                if winner == 0:
+                    y_train[board_index] = 0
+                # If player 1 is winner
+                elif winner == player:
+                    y_train[board_index] = 1
+                # If player 2 is winner
+                else:
+                    y_train[board_index] = 2
+
+                print("y_train is", y_train)
 
                 board_index += 1
-                print("This is game nr: ", game_index, "\nThis is board nr: ", board_index)
+                print("This is game nr: ", game_index, "\nThis is board nr: ", board_index)                    
 
-        ###########################
-        # Define the output layer #
-        ###########################
+        # ############
+        # # Training #
+        # ############
+        # # Create the tf.keras.Sequential model by stacking layers.
+        # # Choose an optimizer and loss function for training.
+        # model = tf.keras.models.Sequential([
+        # tf.keras.layers.InputLayer(input_shape=(75)), # We have an array with 75 objects
+        # tf.keras.layers.Dense(200, activation='relu'),
+        # # Add more layers (max 3)
 
+        # tf.keras.layers.Dropout(0.2),
+        # tf.keras.layers.Dense(3, activation='softmax') # We have only win/loss/draw, so value is 3
+        # ])
 
-        ############
-        # Training #
-        ############
-        # Create the tf.keras.Sequential model by stacking layers.
-        # Choose an optimizer and loss function for training.
-        model = tf.keras.models.Sequential([
-        tf.keras.layers.Flatten(input_shape=(28, 28)),
-        tf.keras.layers.Dense(128, activation='relu'),
-        tf.keras.layers.Dropout(0.2),
-        tf.keras.layers.Dense(10, activation='softmax')
-        ])
-
-        # Compile the model
-        model.compile(optimizer='adam',
-                    loss='sparse_categorical_crossentropy',
-                    metrics=['accuracy'])
+        # # # # Compile the model
+        # model.compile(optimizer='adam',
+        #             loss='sparse_categorical_crossentropy',
+        #             metrics=['accuracy'])
         
-        # Adjust the model parameters to minimize the loss
-        model.fit(x_train, y_train, epochs=1)
+        # # # # Adjust the model parameters to minimize the loss
+        # model.fit(x_train, y_train, epochs=1)
 
-        # Checks the models performance
-        #model.evaluate(x_test, y_test, verbose=2)
+        # # Checks the models performance
+        # #model.evaluate(x_test, y_test, verbose=2)
 
-        # Save the model     
-        
-        # Make a prediction   
+        # # Save the model     
+        # model.save("wicked_model", overwrite=False)
 
     work = []
     for i in range(args.games):
