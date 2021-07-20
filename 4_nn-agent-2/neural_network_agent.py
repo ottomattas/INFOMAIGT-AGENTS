@@ -14,7 +14,7 @@ class NNAgent:
     def __init__(self, id):
         self.id = id
         # initialise your neural network here
-        self.model = tf.keras.models.load_model("nn1_model")
+        self.model = tf.keras.models.load_model("nn2_model")
 
     def make_move(self, game):
 
