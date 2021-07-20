@@ -81,7 +81,7 @@ class NNAgent:
                 current_best_move = move
                 #print("Current best move win probability is: ", current_best_move_win_probability)
                 #print("Current best move is: ", current_best_move)
-
+        print("Current best move outside of the loop: ", current_best_move)
         # use your neural network to make a move here
         return current_best_move
         
