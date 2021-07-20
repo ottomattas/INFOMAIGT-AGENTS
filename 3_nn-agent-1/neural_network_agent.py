@@ -16,16 +16,6 @@ class NNAgent:
         self.model = tf.keras.models.load_model("nn1_model")
 
     def make_move(self, game):
-        # OPTION 1
-        # For each possible action
-        # Return the first move as best_move
-        # If the second move is with a better prediction, update the best_move etc
-
-        # OPTION 2
-        # Give a one-hot encoded boardstate to model
-        # Ask model to give prediction on draw/win/loss
-        # Choose the boardstate with the highest probability for win
-        # Return the boardstate
 
         # Check for free positions
         free_positions = game.board.free_positions()
