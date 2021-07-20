@@ -32,12 +32,12 @@ class BanditAgent():
         # position_score = np.full(number_of_possible_moves,0)
         # position_counter = np.full(number_of_possible_moves,0)
 
+        # Check for free positions
+        free_positions = g.board.free_positions()
+        #print("Free positions:\n", free_positions)
+
         # run until time is up
         while time.perf_counter() - start < self.timelimit / 1000:
-            
-            # Check for free positions
-            free_positions = g.board.free_positions()
-            #print("Free positions:\n", free_positions)
 
             #################
             # Start rollout #
@@ -47,54 +47,50 @@ class BanditAgent():
             b = copy.deepcopy(g.board)
             #print("Deepcopy:\n", b)
 
-            # Create an index for the move
-            index = random.randrange(0, len(free_positions))
+            epsilon = (time.perf_counter() - start) / (self.timelimit / 1000)
+            # # Set epsilon
+            # epsilon = epsilon_array[0]
+            #print("Epsilon: ", epsilon)
 
-            # Set epsilon
-            epsilon = epsilon_array[0]
-            print("Epsilon: ", epsilon)
-
-            if epsilon != 0:
-                # Remove the used epsilon for decay
-                epsilon_index = np.where(epsilon_array == epsilon)[0][0]
-                epsilon_array = np.delete(epsilon_array, epsilon_index)
-                #print("Epsilon array after last delete: ", epsilon_array)
+            # if epsilon != 0:
+            #     # Remove the used epsilon for decay
+            #     epsilon_index = np.where(epsilon_array == epsilon)[0][0]
+            #     epsilon_array = np.delete(epsilon_array, epsilon_index)
+            #     #print("Epsilon array after last delete: ", epsilon_array)
                 
             # Select a greedy move
             if random.random() > epsilon:
-                # Create a tuple to find the list of highest probabilities
-                highest_probabilities = np.where(position_win_probability == np.amax(position_win_probability))
-                #print('Returned tuple of highest probabilities :', highest_probabilities)
-                
-                # Save the list of indices for those highest probabilities
-                highest_probabilities_indices = highest_probabilities[0]
-                #print('List of Indices of highest probabilities :', highest_probabilities_indices)
-                
-                # Extract the first index for the highest probabilities from
-                # the list as there might be more than one highest probability
-                highest_probability_index = highest_probabilities_indices[0]
-                #print("Highest probability index is", highest_probability_index)
+                # Find the index of highest probability
+                index = np.argmax(position_win_probability)
+                #print('Returned index of highest probability :', highest_probability_index)
                 
                 # Select the move
-                selected_move = free_positions[highest_probability_index]
-                print("Selected greedy move:", selected_move)
+                selected_move = free_positions[index]
+                #print("Selected greedy move:", selected_move)
 
             # Select a random move
             else:
+                # Create an index for the move
+                index = random.randrange(0, len(free_positions))
+
                 # Select a random move
                 selected_move = free_positions[index]
-                print("Selected random move:", selected_move)
+                #print("Selected random move:", selected_move)
 
             # Take the move on the copied board
             b.place(selected_move, self.id)
 
             # Set parameters for simulation
-            simulation_players = [RandomAgent(1), RandomAgent(2)]
+            simulation_players = [RandomAgent(2), RandomAgent(1)]
             simulation_game = g.from_board(b, g.objectives, simulation_players, g.print_board)
 
-            # Simulate and determine the winner
-            winner = simulation_game.play()
-            #print("Simulation END:\n", b, "\nWinner is: ", winner)
+            # Check if there is already a winner
+            if simulation_game.victory(selected_move, self.id) == False:
+                # Simulate and determine the winner
+                winner = simulation_game.play()
+                #print("Simulation END:\n", b, "\nWinner is: ", winner)
+            else:
+                winner = self
             
             # Give values to states
             # winner==True
@@ -116,6 +112,7 @@ class BanditAgent():
 
             # Count the times a position is visited
             position_counter[index] += 1
+
             #print("position_counter is", position_counter[index])
 
             # Calculate average position value
@@ -127,22 +124,13 @@ class BanditAgent():
         #print("GIVE THE MOVE BACK TO THE ACTUAL GAME:", selected_move)
         #print("probability:", selected_move)
 
-        # Create a tuple to find the list of highest probabilities
-        highest_probabilities = np.where(position_win_probability == np.amax(position_win_probability))
-        #print('Returned tuple of highest probabilities :', highest_probabilities)
-        
-        # Save the list of indices for those highest probabilities
-        highest_probabilities_indices = highest_probabilities[0]
-        #print('List of Indices of highest probabilities :', highest_probabilities_indices)
-        
-        # Extract the first index for the highest probabilities from
-        # the list as there might be more than one highest probability
-        highest_probability_index = highest_probabilities_indices[0]
-        #print("Highest probability index is", highest_probability_index)
-        
+        # Find the highest probability index
+        highest_probability_index = np.argmax(position_win_probability)
+        #print('Returned tuple of highest probabilities :', highest_probability)
+              
         # Select the move
         selected_move = free_positions[highest_probability_index]
-        print("Selected greedy move:", selected_move) 
+        #print("Selected greedy move:", selected_move) 
 
         return selected_move
         #return g.board.random_free()
