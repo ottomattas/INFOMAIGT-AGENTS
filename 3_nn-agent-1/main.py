@@ -141,9 +141,14 @@ def main(args):
         # Choose an optimizer and loss function for training.
         model = tf.keras.models.Sequential([
         tf.keras.layers.InputLayer(input_shape=(75)), # We have an array with 75 objects
-        tf.keras.layers.Dense(2000, activation='relu'),
-        tf.keras.layers.Dense(2000),
-        tf.keras.layers.Dense(2000),
+        # tf.keras.layers.Dense(2000, activation='relu'), Try 1: Total score 80/14/6. Total time 549.3607526160001 seconds.
+        # tf.keras.layers.Dense(2000),
+        # tf.keras.layers.Dense(2000),
+        tf.keras.layers.Dense(75, activation='relu'),
+        tf.keras.layers.Dropout(0.2),
+        tf.keras.layers.Dense(50),
+        tf.keras.layers.Dropout(0.2),
+        tf.keras.layers.Dense(25),
         tf.keras.layers.Dropout(0.2),
         tf.keras.layers.Dense(3, activation='softmax') # We have only win/loss/draw, so value is 3
         ])
@@ -154,7 +159,8 @@ def main(args):
                     metrics=['accuracy'])
         
         # # # Adjust the model parameters to minimize the loss
-        model.fit(x_train, y_train, epochs=2)
+        #model.fit(x_train, y_train, epochs=2) # Try 1
+        model.fit(x_train, y_train, batch_size=2000, epochs=1)
 
         # Checks the models performance
         #model.evaluate(x_test, y_test, verbose=2)
