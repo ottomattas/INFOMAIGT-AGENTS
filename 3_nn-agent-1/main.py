@@ -29,7 +29,7 @@ def main(args):
         # Create array for the input layer
         # (Columns: each possible move, represented in one-hot encoding
         # Rows: each possible board state)
-        x_train = tf.keras.utils.to_categorical(np.zeros((board_state_count,75),dtype=int),1)
+        x_train = np.zeros((board_state_count,75),dtype=int)
         #print("X train is \n",x_train)
 
         # Create array for the output layer with the proper shape
