@@ -9,7 +9,6 @@ import multiprocessing as mp
 from collections import Counter
 from itertools import starmap
 import tensorflow as tf
-from sklearn.preprocessing import OneHotEncoder
 
 def main(args):
     if args.input:
