@@ -232,7 +232,7 @@ def read_objectives(filename):
             shape.append(shape_line)
             i += 1
 
-        shapes.append(np.array(shape))
+        shapes.append(np.transpose(np.array(shape)))
         i += 1
 
     return shapes
