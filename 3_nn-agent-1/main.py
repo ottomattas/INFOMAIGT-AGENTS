@@ -151,7 +151,7 @@ def main(args):
 
         # # # # Compile the model
         # model.compile(optimizer='adam',
-        #             loss='sparse_categorical_crossentropy',
+        #             loss='sparse_categorical_crossentropy', # look at that
         #             metrics=['accuracy'])
         
         # # # # Adjust the model parameters to minimize the loss
@@ -161,7 +161,7 @@ def main(args):
         # #model.evaluate(x_test, y_test, verbose=2)
 
         # # Save the model     
-        # model.save("wicked_model", overwrite=False)
+        # model.save("nn1_model", overwrite=False)
 
     work = []
     for i in range(args.games):
