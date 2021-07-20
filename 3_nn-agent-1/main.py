@@ -137,35 +137,35 @@ def main(args):
                 #print("This is game nr: ", game_index)
                 #print("This is board nr: ", board_index)                    
 
-        ############
-        # Training #
-        ############
-        # Create the tf.keras.Sequential model by stacking layers.
-        # Choose an optimizer and loss function for training.
-        model = tf.keras.models.Sequential([
-        tf.keras.layers.InputLayer(input_shape=(75)), # array with 75 objects
-        tf.keras.layers.Dense(75, activation='relu'),
-        tf.keras.layers.Dropout(0.1),
-        tf.keras.layers.Dense(50),
-        tf.keras.layers.Dropout(0.1),
-        tf.keras.layers.Dense(25),
-        tf.keras.layers.Dropout(0.1),
-        tf.keras.layers.Dense(3, activation='softmax') # win/loss/draw, so 3
-        ])
+        # ############
+        # # Training #
+        # ############
+        # # Create the tf.keras.Sequential model by stacking layers.
+        # # Choose an optimizer and loss function for training.
+        # model = tf.keras.models.Sequential([
+        # tf.keras.layers.InputLayer(input_shape=(75)), # array with 75 objects
+        # tf.keras.layers.Dense(75, activation='relu'),
+        # tf.keras.layers.Dropout(0.1),
+        # tf.keras.layers.Dense(50),
+        # tf.keras.layers.Dropout(0.1),
+        # tf.keras.layers.Dense(25),
+        # tf.keras.layers.Dropout(0.1),
+        # tf.keras.layers.Dense(3, activation='softmax') # win/loss/draw, so 3
+        # ])
 
-        # # # Compile the model
-        model.compile(optimizer='adam',
-                    loss='sparse_categorical_crossentropy',
-                    metrics=['accuracy'])
+        # # # # Compile the model
+        # model.compile(optimizer='adam',
+        #             loss='sparse_categorical_crossentropy',
+        #             metrics=['accuracy'])
         
-        # # # Adjust the model parameters to minimize the loss
-        model.fit(x_train, y_train, batch_size=200, epochs=5)
+        # # # # Adjust the model parameters to minimize the loss
+        # model.fit(x_train, y_train, batch_size=200, epochs=5)
 
-        # Checks the models performance
-        #model.evaluate(x_test, y_test, verbose=2)
+        # # Checks the models performance
+        # #model.evaluate(x_test, y_test, verbose=2)
 
-        # Save the model     
-        model.save("nn1_model", overwrite=False)
+        # # Save the model     
+        # model.save("nn1_model", overwrite=False)
 
     work = []
     for i in range(args.games):
