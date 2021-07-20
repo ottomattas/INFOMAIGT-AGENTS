@@ -16,21 +16,12 @@ class BanditAgent():
 
     def make_move(self, g):
         start = time.perf_counter()
-        start_epsilon = 1.0
-        end_epsilon = 0.0
         number_of_possible_moves = len(g.board.free_positions())
         
-        # Create array for possible epsilon values
-        epsilon_array = np.linspace(start_epsilon, end_epsilon, self.timelimit)
-        #print("Epsilon decay list:", epsilon_array)
-
         # Create arrays for evaluating the position
         position_win_probability = np.zeros(number_of_possible_moves)
         position_score = np.zeros(number_of_possible_moves)
         position_counter = np.zeros(number_of_possible_moves)
-        # position_win_probability = np.full(number_of_possible_moves,0)
-        # position_score = np.full(number_of_possible_moves,0)
-        # position_counter = np.full(number_of_possible_moves,0)
 
         # Check for free positions
         free_positions = g.board.free_positions()
@@ -47,16 +38,9 @@ class BanditAgent():
             b = copy.deepcopy(g.board)
             #print("Deepcopy:\n", b)
 
+            # Set epsilon
             epsilon = (time.perf_counter() - start) / (self.timelimit / 1000)
-            # # Set epsilon
-            # epsilon = epsilon_array[0]
-            #print("Epsilon: ", epsilon)
-
-            # if epsilon != 0:
-            #     # Remove the used epsilon for decay
-            #     epsilon_index = np.where(epsilon_array == epsilon)[0][0]
-            #     epsilon_array = np.delete(epsilon_array, epsilon_index)
-            #     #print("Epsilon array after last delete: ", epsilon_array)
+            #print("Epsilon is: ",epsilon)
                 
             # Select a greedy move
             if random.random() > epsilon:
@@ -104,6 +88,7 @@ class BanditAgent():
                 else:
                     position_score[index] -= 1
                     #print("position_score after loss", position_score[index])
+
             # winner==False
             else:
                 # if draw, value 0
@@ -112,17 +97,11 @@ class BanditAgent():
 
             # Count the times a position is visited
             position_counter[index] += 1
-
             #print("position_counter is", position_counter[index])
 
             # Calculate average position value
             position_win_probability[index] = position_score[index] / position_counter[index]
             #print("Average value is", position_win_probability[index])
-            
-        
-        # return the best move you've found here
-        #print("GIVE THE MOVE BACK TO THE ACTUAL GAME:", selected_move)
-        #print("probability:", selected_move)
 
         # Find the highest probability index
         highest_probability_index = np.argmax(position_win_probability)
@@ -131,9 +110,9 @@ class BanditAgent():
         # Select the move
         selected_move = free_positions[highest_probability_index]
         #print("Selected greedy move:", selected_move) 
-
+        
+        # return the best move you've found here
         return selected_move
-        #return g.board.random_free()
 
     def __str__(self):
         return f'Player {self.id} (BanditAgent)'
