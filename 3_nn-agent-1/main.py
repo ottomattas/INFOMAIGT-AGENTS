@@ -132,41 +132,38 @@ def main(args):
                 #print("y_train is", y_train)
 
                 board_index += 1
-                #print("This is game nr: ", game_index, "\nThis is board nr: ", board_index)                    
+                #print("This is game nr: ", game_index)
+                #print("This is board nr: ", board_index)                    
 
-        # ############
-        # # Training #
-        # ############
-        # # Create the tf.keras.Sequential model by stacking layers.
-        # # Choose an optimizer and loss function for training.
-        # model = tf.keras.models.Sequential([
-        # tf.keras.layers.InputLayer(input_shape=(75)), # We have an array with 75 objects
-        # # tf.keras.layers.Dense(2000, activation='relu'), Try 1: Total score 80/14/6. Total time 549.3607526160001 seconds.
-        # # tf.keras.layers.Dense(2000),
-        # # tf.keras.layers.Dense(2000),
-        # tf.keras.layers.Dense(75, activation='relu'),
-        # tf.keras.layers.Dropout(0.2),
-        # tf.keras.layers.Dense(50),
-        # tf.keras.layers.Dropout(0.2),
-        # tf.keras.layers.Dense(25),
-        # tf.keras.layers.Dropout(0.2),
-        # tf.keras.layers.Dense(3, activation='softmax') # We have only win/loss/draw, so value is 3
-        # ])
+        ############
+        # Training #
+        ############
+        # Create the tf.keras.Sequential model by stacking layers.
+        # Choose an optimizer and loss function for training.
+        model = tf.keras.models.Sequential([
+        tf.keras.layers.InputLayer(input_shape=(75)), # array with 75 objects
+        tf.keras.layers.Dense(75, activation='relu'),
+        tf.keras.layers.Dropout(0.2),
+        tf.keras.layers.Dense(50),
+        tf.keras.layers.Dropout(0.2),
+        tf.keras.layers.Dense(25),
+        tf.keras.layers.Dropout(0.2),
+        tf.keras.layers.Dense(3, activation='softmax') # win/loss/draw, so 3
+        ])
 
-        # # # # Compile the model
-        # model.compile(optimizer='adam',
-        #             loss='sparse_categorical_crossentropy', # look at that
-        #             metrics=['accuracy'])
+        # # # Compile the model
+        model.compile(optimizer='adam',
+                    loss='categorical_crossentropy', # look at that
+                    metrics=['accuracy'])
         
-        # # # # Adjust the model parameters to minimize the loss
-        # #model.fit(x_train, y_train, epochs=2) # Try 1
-        # model.fit(x_train, y_train, batch_size=2000, epochs=1)
+        # # # Adjust the model parameters to minimize the loss
+        model.fit(x_train, y_train, batch_size=100, epochs=2)
 
-        # # Checks the models performance
-        # #model.evaluate(x_test, y_test, verbose=2)
+        # Checks the models performance
+        #model.evaluate(x_test, y_test, verbose=2)
 
-        # # Save the model     
-        # model.save("nn1_model", overwrite=False)
+        # Save the model     
+        model.save("nn1_model", overwrite=False)
 
     work = []
     for i in range(args.games):
