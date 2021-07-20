@@ -1,6 +1,7 @@
 #! /usr/bin/env -S python -u
 from game import Game
 from random_agent import RandomAgent
+from bandit_agent import BanditAgent
 from neural_network_agent import NNAgent
 
 import argparse, time, cProfile
@@ -170,9 +171,9 @@ def main(args):
     for i in range(args.games):
         # swap order every game
         if i % 2 == 0:
-            players = [NNAgent(1), RandomAgent(2)]
+            players = [BanditAgent(1), NNAgent(2)]
         else:
-            players = [RandomAgent(2), NNAgent(1)]
+            players = [NNAgent(2), BanditAgent(1)]
 
         work.append((args.size,
                      read_objectives(args.objectives),
