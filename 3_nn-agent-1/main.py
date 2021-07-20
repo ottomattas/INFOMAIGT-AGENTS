@@ -157,7 +157,7 @@ def main(args):
                     metrics=['accuracy'])
         
         # # # Adjust the model parameters to minimize the loss
-        model.fit(x_train, y_train, batch_size=100, epochs=2)
+        model.fit(x_train, y_train, epochs=2)
 
         # Checks the models performance
         #model.evaluate(x_test, y_test, verbose=2)
