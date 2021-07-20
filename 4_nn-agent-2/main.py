@@ -165,15 +165,15 @@ def main(args):
         #model.evaluate(x_test, y_test, verbose=2)
 
         # Save the model     
-        model.save("nn1_model", overwrite=False)
+        model.save("nn2_model", overwrite=False)
 
     work = []
     for i in range(args.games):
         # swap order every game
         if i % 2 == 0:
-            players = [BanditAgent(args.time,1), RandomAgent(2)]
+            players = [BanditAgent(args.time,1), NNAgent(2)]
         else:
-            players = [RandomAgent(2), BanditAgent(args.time,1)]
+            players = [NNAgent(2), BanditAgent(args.time,1)]
 
         work.append((args.size,
                      read_objectives(args.objectives),
