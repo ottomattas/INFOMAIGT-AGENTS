@@ -1,7 +1,7 @@
 #! /usr/bin/env -S python -u
 from game import Game
-from board import Board
 from random_agent import RandomAgent
+from bandit_agent import BanditAgent
 from neural_network_agent import NNAgent
 
 import argparse, time, cProfile
@@ -9,19 +9,171 @@ import numpy as np
 import multiprocessing as mp
 from collections import Counter
 from itertools import starmap
+import tensorflow as tf
 
 def main(args):
     if args.input:
+
+        # Load dataset
         data = read_games(args.input)
-        # call some function to do your preprocessing and training here
+        #print("Game 1 array is \n", data[0])
+
+        # Count the board states
+        board_state_count = 0
+        # For each _ element, and game element
+        for _, game in data:
+            # For each _ element as only the number of elements is relevant
+            for _, _, _ in game:
+                board_state_count += 1
+                #print("Board state count is ",board_state_count)
+
+        # Create array for the input layer
+        # (Columns: each possible move, represented in one-hot encoding
+        # Rows: each possible board state)
+        x_train = np.zeros((board_state_count,75),dtype=int)
+        #print("X train is \n",x_train)
+
+        # Create array for the output layer with the proper shape
+        # (For each board state, save the winner)
+        y_train = np.zeros(board_state_count,dtype=int)
+        #y_train = tf.keras.utils.to_categorical(np.zeros(board_state_count,dtype=int),3)
+        #print("Y train is \n",y_train)
+
+        # Create indexes for game and board
+        game_index = 0
+        board_index = 0
+
+        # Loop over all games and boards
+        for winner, game in data:
+            game_index += 1
+            for player, move, board in game:
+                #print("Player is ", player)
+                #print("Move is ", move)
+                #print("Board is\n", board)
+                #print("Winner is ", winner)
+
+                ##########################
+                # Create the input layer #
+                ##########################
+                # For each player, we want to look it from their perspective.
+                # Set each player's move as 0 0 1 in x_train.
+
+                # Define a list for appending the one-hot encoded players    
+                lst = []
+
+                # If player 1 move
+                if player == 1:
+                    for x in range(5):
+                        for y in range(5):
+                            # When position value is 1 (player 1 move)
+                            if board[x, y] == 1:
+                                # Append 0 0 1
+                                lst.append(0)
+                                lst.append(0)
+                                lst.append(1)
+                            # When position value is 2 (player 2 move)
+                            elif board[x, y] == 2:
+                                # Append 0 1 0
+                                lst.append(0)
+                                lst.append(1)
+                                lst.append(0)
+                            # When position value is 0 (no player move yet)
+                            else:
+                                # Append 1 0 0
+                                lst.append(1)
+                                lst.append(0)
+                                lst.append(0)
+                    # Save the one-hot encoded list in the x_train array
+                    # at position board_index
+                    x_train[board_index] = np.array(lst)
+                    #print("After player 1 move, encoded board is now \n", x_train[board_index])
+                    #print("After player 1 move, x_train is now \n", x_train)
+                
+                # If player 2 move
+                else:
+                    for x in range(5):
+                        for y in range(5):
+                            # When position value is 2 (player 2 move)
+                            if board[x, y] == 2:
+                                # Append 0 0 1
+                                lst.append(0)
+                                lst.append(0)
+                                lst.append(1)
+                            # When position value is 1 (player 1 move)
+                            elif board[x, y] == 1:
+                                # Append 0 1 0
+                                lst.append(0)
+                                lst.append(1)
+                                lst.append(0)
+                            # When position value is 0 (no player move yet)
+                            else:
+                                # Append 1 0 0
+                                lst.append(1)
+                                lst.append(0)
+                                lst.append(0)
+                    # Save the one-hot encoded list in the x_train array
+                    # at position board_index
+                    x_train[board_index] = np.array(lst)
+                    #print("After player 2 move, encoded board is now \n", x_train[board_index])
+                    #print("After player 2 move, x_train is now \n", x_train)
+
+
+                ###########################
+                # Create the output layer #
+                ###########################
+                # If draw
+                if winner == 0:
+                    y_train[board_index] = 0
+                # If player 1 is winner
+                elif winner == player:
+                    y_train[board_index] = 1
+                # If player 2 is winner
+                else:
+                    y_train[board_index] = 2
+
+                #print("y_train is", y_train)
+
+                board_index += 1
+                #print("This is game nr: ", game_index)
+                #print("This is board nr: ", board_index)                    
+
+        ############
+        # Training #
+        ############
+        # Create the tf.keras.Sequential model by stacking layers.
+        # Choose an optimizer and loss function for training.
+        model = tf.keras.models.Sequential([
+        tf.keras.layers.InputLayer(input_shape=(75)), # array with 75 objects
+        tf.keras.layers.Dense(75, activation='relu'),
+        tf.keras.layers.Dropout(0.1),
+        tf.keras.layers.Dense(50),
+        tf.keras.layers.Dropout(0.1),
+        tf.keras.layers.Dense(25),
+        tf.keras.layers.Dropout(0.1),
+        tf.keras.layers.Dense(3, activation='softmax') # win/loss/draw, so 3
+        ])
+
+        # # # Compile the model
+        model.compile(optimizer='adam',
+                    loss='sparse_categorical_crossentropy',
+                    metrics=['accuracy'])
+        
+        # # # Adjust the model parameters to minimize the loss
+        model.fit(x_train, y_train, batch_size=200, epochs=5)
+
+        # Checks the models performance
+        #model.evaluate(x_test, y_test, verbose=2)
+
+        # Save the model     
+        model.save("nn1_model", overwrite=False)
 
     work = []
     for i in range(args.games):
         # swap order every game
         if i % 2 == 0:
-            players = [RandomAgent(1), RandomAgent(2)]
+            players = [BanditAgent(args.time,1), NNAgent(2)]
         else:
-            players = [RandomAgent(2), RandomAgent(1)]
+            players = [NNAgent(2), BanditAgent(args.time,1)]
 
         work.append((args.size,
                      read_objectives(args.objectives),
@@ -110,12 +262,10 @@ def read_games(filename):
                     for x in range(boardsize):
                         board[(x, y)] = int(row[x])
                     i += 1
-
                 game.append((turn, move, board))
 
             winner = int(lines[i].split('=')[1])
             games.append((winner, game))
-
             i += 1
 
         return games
