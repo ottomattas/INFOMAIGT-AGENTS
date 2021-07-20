@@ -82,9 +82,7 @@ class NNAgent:
                 #print("Current best move is: ", current_best_move)
 
         # use your neural network to make a move here
-        return game.board.random_free()
-        #return best_move
-        
+        return current_best_move
 
     def __str__(self):
         return f'Player {self.id} (NNAgent)'
