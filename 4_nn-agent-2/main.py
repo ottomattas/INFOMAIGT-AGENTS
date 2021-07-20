@@ -171,9 +171,9 @@ def main(args):
     for i in range(args.games):
         # swap order every game
         if i % 2 == 0:
-            players = [RandomAgent(1), RandomAgent(2)]
+            players = [BanditAgent(args.time,1), RandomAgent(2)]
         else:
-            players = [RandomAgent(2), RandomAgent(1)]
+            players = [RandomAgent(2), BanditAgent(args.time,1)]
 
         work.append((args.size,
                      read_objectives(args.objectives),
