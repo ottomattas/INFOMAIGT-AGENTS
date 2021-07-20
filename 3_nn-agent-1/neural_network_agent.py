@@ -3,11 +3,9 @@
 
 import random
 import numpy as np
-import tensorflow as tf
-import main as mn
 
 # uncomment one of the two lines below, depending on which library you want to use
-# import tensorflow
+import tensorflow as tf
 # import torch
 
 
@@ -39,7 +37,7 @@ class NNAgent:
         # Create an array for prediction samples
         samples_to_predict = []
 
-        print("x_train is: \n", mn.x_train)
+        print("x_train is: \n", self.x_train)
 
         # For each free position
         for move in free_positions:
