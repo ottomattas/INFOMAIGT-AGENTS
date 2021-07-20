@@ -20,7 +20,7 @@ class NNAgent:
 
         # Check for free positions
         free_positions = game.board.free_positions()
-        print("Free positions are:\n", free_positions)
+        #print("Free positions are:\n", free_positions)
 
         # Create variables for current best move
         current_best_move = 0
@@ -66,7 +66,7 @@ class NNAgent:
             b_one_hot = np.array([lst])
             #print("Shape of the deepcopy one-hot board state: ", b_one_hot.shape)
             #print("Deepcopy one-hot board state \n", board_state_one_hot)
-
+            
             # Generate winning predictions for board state
             predictions = self.model.predict(b_one_hot)
             #print("Predictions:\n", predictions)
@@ -76,7 +76,7 @@ class NNAgent:
 
                 # Update the current best move win probability
                 current_best_move_win_probability = predictions[0,1]
-            
+
                 # Update the current best move
                 current_best_move = move
                 #print("Current best move win probability is: ", current_best_move_win_probability)
@@ -84,6 +84,6 @@ class NNAgent:
 
         # use your neural network to make a move here
         return current_best_move
-
+        
     def __str__(self):
         return f'Player {self.id} (NNAgent)'
