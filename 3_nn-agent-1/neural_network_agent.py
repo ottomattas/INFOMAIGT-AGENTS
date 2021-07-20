@@ -21,31 +21,65 @@ class NNAgent:
         free_positions = game.board.free_positions()
         print("Free positions are:\n", free_positions)
 
-        # Create variable for best_move
-        best_move = 0
-
-        # Create an array for prediction samples
-        samples_to_predict = []
-
-        print("x_train is: \n", self.x_train)
+        # Create variables for current best move
+        current_best_move = 0
+        current_best_move_win_probability = -1
 
         # For each free position
         for move in free_positions:
-            # Add sample to array for prediction
-            samples_to_predict.append(x_train[move])
 
-            # Convert into Numpy array
-            samples_to_predict = np.array(samples_to_predict)
-            print("Samples to predict array:\n", samples_to_predict)
-            #print(samples_to_predict.shape)
+            # Copy the board for simulation
+            b = copy.deepcopy(game.board)
 
-            # Generate predictions for samples
-            predictions = self.model.predict(samples_to_predict)
-            print("Predictions:\n",predictions)
+            # Take the move on the copied board
+            b.place(move, self.id)
+
+            # Define a list for appending the one-hot encoded players    
+            lst = []
+
+            # Loop over the whole board and append one-hot encoding value
+            for x in range(5):
+                for y in range(5):
+
+                    # When position value is 0 (no player move yet)
+                    if b.value((x, y)) == 0:
+                        # Append 1 0 0
+                        lst.append(1)
+                        lst.append(0)
+                        lst.append(0)
+
+                    # When this agent makes move
+                    elif b.value((x, y)) == self.id:
+                        # Append 0 0 1
+                        lst.append(0)
+                        lst.append(0)
+                        lst.append(1)
+                    # Then the other agent makes move
+                    else:
+                        # Append 0 1 0
+                        lst.append(0)
+                        lst.append(1)
+                        lst.append(0)
+
+            # Save the one-hot encoded list as a new 2D numpy array
+            b_one_hot = np.array([lst])
+            #print("Shape of the deepcopy one-hot board state: ", b_one_hot.shape)
+            #print("Deepcopy one-hot board state \n", board_state_one_hot)
+
+            # Generate winning predictions for board state
+            predictions = self.model.predict(b_one_hot)
+            #print("Predictions:\n", predictions)
+
+            # Check if the current move has the highest win probability
+            if current_best_move_win_probability < predictions[0,1]:
+
+                # Update the current best move win probability
+                current_best_move_win_probability = predictions[0,1]
             
-            # Generate arg maxes for predictions
-            classes = np.argmax(predictions, axis = 1)
-            print(classes)
+                # Update the current best move
+                current_best_move = move
+                #print("Current best move win probability is: ", current_best_move_win_probability)
+                #print("Current best move is: ", current_best_move)
 
         # use your neural network to make a move here
         return game.board.random_free()
