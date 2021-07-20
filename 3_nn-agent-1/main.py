@@ -30,7 +30,7 @@ def main(args):
         # (Columns: each possible move, represented in one-hot encoding
         # Rows: each possible board state)
         x_train = np.zeros((board_state_count,75),dtype=int)
-        print("X train is \n",x_train)
+        #print("X train is \n",x_train)
 
         # Create array for the output layer
         # (For each board state, save the winner)
@@ -45,10 +45,10 @@ def main(args):
         for winner, game in data:
             game_index += 1
             for player, move, board in game:
-                print("Player is ", player)
-                print("Move is ", move)
-                print("Board is\n", board)
-                print("Winner is ", winner)
+                #print("Player is ", player)
+                #print("Move is ", move)
+                #print("Board is\n", board)
+                #print("Winner is ", winner)
 
                 ##########################
                 # Create the input layer #
@@ -84,8 +84,8 @@ def main(args):
                     # Save the one-hot encoded list in the x_train array
                     # at position board_index
                     x_train[board_index] = np.array(lst)
-                    print("After player 1 move, encoded board is now \n", x_train[board_index])
-                    print("After player 1 move, x_train is now \n", x_train)
+                    #print("After player 1 move, encoded board is now \n", x_train[board_index])
+                    #print("After player 1 move, x_train is now \n", x_train)
                 
                 # If player 2 move
                 else:
@@ -112,8 +112,8 @@ def main(args):
                     # Save the one-hot encoded list in the x_train array
                     # at position board_index
                     x_train[board_index] = np.array(lst)
-                    print("After player 2 move, encoded board is now \n", x_train[board_index])
-                    print("After player 2 move, x_train is now \n", x_train)
+                    #print("After player 2 move, encoded board is now \n", x_train[board_index])
+                    #print("After player 2 move, x_train is now \n", x_train)
 
 
                 ###########################
@@ -129,10 +129,10 @@ def main(args):
                 else:
                     y_train[board_index] = 2
 
-                print("y_train is", y_train)
+                #print("y_train is", y_train)
 
                 board_index += 1
-                print("This is game nr: ", game_index, "\nThis is board nr: ", board_index)                    
+                #print("This is game nr: ", game_index, "\nThis is board nr: ", board_index)                    
 
         # ############
         # # Training #
