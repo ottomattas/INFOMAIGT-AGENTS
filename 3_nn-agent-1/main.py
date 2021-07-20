@@ -143,8 +143,8 @@ def main(args):
         # model = tf.keras.models.Sequential([
         # tf.keras.layers.InputLayer(input_shape=(75)), # We have an array with 75 objects
         # tf.keras.layers.Dense(200, activation='relu'),
-        # # Add more layers (max 3)
-
+        # tf.keras.layers.Dense(200),
+        # tf.keras.layers.Dense(200),
         # tf.keras.layers.Dropout(0.2),
         # tf.keras.layers.Dense(3, activation='softmax') # We have only win/loss/draw, so value is 3
         # ])
