@@ -89,10 +89,10 @@ class NNAgent:
         for prediction in predictions:
 
             # If the current probability is lower than the prediction (win+draw)
-            if current_best_move_probability < (5*prediction[1] + prediction[0])/5:
+            if current_best_move_probability < (2*prediction[1] + prediction[0])/2:
 
                 # Update the current best move win probability
-                current_best_move_probability = (5*prediction[1] + prediction[0])/5 
+                current_best_move_probability = (2*prediction[1] + prediction[0])/2 
 
                 # Update the current best move
                 current_best_move = free_positions[move_counter]
