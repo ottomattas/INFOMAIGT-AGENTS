@@ -144,17 +144,17 @@ def main(args):
         model = tf.keras.models.Sequential([
         tf.keras.layers.InputLayer(input_shape=(75)), # array with 75 objects
         tf.keras.layers.Dense(75, activation='relu'),
-        tf.keras.layers.Dropout(0.2),
+        tf.keras.layers.Dropout(0.1),
         tf.keras.layers.Dense(50),
-        tf.keras.layers.Dropout(0.2),
+        tf.keras.layers.Dropout(0.1),
         tf.keras.layers.Dense(25),
-        tf.keras.layers.Dropout(0.2),
+        tf.keras.layers.Dropout(0.1),
         tf.keras.layers.Dense(3, activation='softmax') # win/loss/draw, so 3
         ])
 
         # # # Compile the model
         model.compile(optimizer='adam',
-                    loss='categorical_crossentropy', # look at that
+                    loss='sparse_categorical_crossentropy',
                     metrics=['accuracy'])
         
         # # # Adjust the model parameters to minimize the loss
