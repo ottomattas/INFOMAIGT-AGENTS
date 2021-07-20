@@ -3,6 +3,7 @@
 
 import random
 import numpy as np
+import copy
 
 # uncomment one of the two lines below, depending on which library you want to use
 import tensorflow as tf
