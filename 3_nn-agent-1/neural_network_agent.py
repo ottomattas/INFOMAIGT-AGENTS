@@ -22,10 +22,15 @@ class NNAgent:
         free_positions = game.board.free_positions()
         #print("Free positions are:\n", free_positions)
 
-        # Define a list for appending the one-hot encoded players    
+        # Define an array for storing all the one-hot encoded board states
         arr = np.zeros((len(free_positions),75),dtype=int)
+
+        # Define a board counter
         board_counter = 0
 
+        ############
+        # Simulate #
+        ############
         # For each free position
         for move in free_positions:
 
@@ -35,75 +40,55 @@ class NNAgent:
             # Take the move on the copied board
             b.place(move, self.id)
 
-            # # Define a list for appending the one-hot encoded players    
-            # lst = []
-
-            # # Loop over the whole board and append one-hot encoding value
-            # for x in range(5):
-            #     for y in range(5):
-
-            #         # When position value is 0 (no player move yet)
-            #         if b.value((x, y)) == 0:
-            #             # Append 1 0 0
-            #             lst.append(1)
-            #             lst.append(0)
-            #             lst.append(0)
-
-            #         # When this agent makes move
-            #         elif b.value((x, y)) == self.id:
-            #             # Append 0 0 1
-            #             lst.append(0)
-            #             lst.append(0)
-            #             lst.append(1)
-            #         # Then the other agent makes move
-            #         else:
-            #             # Append 0 1 0
-            #             lst.append(0)
-            #             lst.append(1)
-            #             lst.append(0)
-
-            # # Save the one-hot encoded list as a new 2D numpy array
-            # b_one_hot = np.array([lst])
-            # #print("Shape of the deepcopy one-hot board state: ", b_one_hot.shape)
-            # #print("Deepcopy one-hot board state \n", board_state_one_hot)
-
-
-            # Loop over the whole board and append one-hot encoding value
+            # Loop over the whole board with the size 5x5
             for x in range(5):
                 for y in range(5):
+
                     # Update the array with the encoding
+                    # Each value gets a one-hot encoding, so the translations
+                    # can be made as follows:
+                    # value 0 -> 1 0 0
+                    # value this player (self.id) -> 0 0 1
+                    # value other player -> 0 1 0
+
                     # When position value is 0 (no player move yet)
                     if b.value((x, y)) == 0:
-                        # Find position for the empty space and update it for one-hot encoding
+
+                        # Find position for the empty space and update it
                         arr[board_counter,(y*3)+(x*15)] = 1
 
-                    # When this agent makes move
+                    # When current agent makes move
                     elif b.value((x, y)) == self.id:
+
                         # Find position and update for one-hot encoding
                         arr[board_counter,(y*3)+(x*15)+2] = 1
 
                     # Then the other agent makes move
                     else:
+
                         # Find position and update for one-hot encoding
                         arr[board_counter,(y*3)+(x*15)+1] = 1   
 
-            # A board counter
+            # Count the board
             board_counter += 1
 
         ###########
         # Predict #
         ###########
-        # Create variables for current best move
-        move_counter = 0
+        # Create variables for current best move win probability
         current_best_move_win_probability = -1
 
-        # Generate winning predictions for board state
+        # Define a move counter
+        move_counter = 0
+
+        # Generate winning predictions for all board states
         predictions = self.model.predict(arr)
         #print("Predictions:\n", predictions)
 
-        # Check if the current move has the highest win probability
+        # For each prediction
         for prediction in predictions:
 
+            # If the current probability is lower than the prediction
             if current_best_move_win_probability < prediction[1]:
 
                 # Update the current best move win probability
@@ -113,9 +98,10 @@ class NNAgent:
                 current_best_move = free_positions[move_counter]
                 #print("Current best move win probability is: ", current_best_move_win_probability)
                 #print("Current best move is: ", current_best_move)
+
+            # Count a move
             move_counter += 1
 
-        print("Current best move outside of the loop: ", current_best_move)
         # use your neural network to make a move here
         return current_best_move
         
