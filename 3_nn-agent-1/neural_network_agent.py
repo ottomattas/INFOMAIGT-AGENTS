@@ -75,8 +75,8 @@ class NNAgent:
         ###########
         # Predict #
         ###########
-        # Create variables for current best move win probability
-        current_best_move_win_probability = -1
+        # Create variables for current best move probability
+        current_best_move_probability = -1
 
         # Define a move counter
         move_counter = 0
@@ -88,11 +88,11 @@ class NNAgent:
         # For each prediction
         for prediction in predictions:
 
-            # If the current probability is lower than the prediction
-            if current_best_move_win_probability < prediction[1]:
+            # If the current probability is lower than the prediction (win+draw)
+            if current_best_move_probability < (5*prediction[1] + prediction[0])/5:
 
                 # Update the current best move win probability
-                current_best_move_win_probability = prediction[1]
+                current_best_move_probability = (5*prediction[1] + prediction[0])/5 
 
                 # Update the current best move
                 current_best_move = free_positions[move_counter]
