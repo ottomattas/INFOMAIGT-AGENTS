@@ -142,9 +142,9 @@ def main(args):
         # # Choose an optimizer and loss function for training.
         # model = tf.keras.models.Sequential([
         # tf.keras.layers.InputLayer(input_shape=(75)), # We have an array with 75 objects
-        # tf.keras.layers.Dense(200, activation='relu'),
-        # tf.keras.layers.Dense(200),
-        # tf.keras.layers.Dense(200),
+        # tf.keras.layers.Dense(2000, activation='relu'),
+        # tf.keras.layers.Dense(2000),
+        # tf.keras.layers.Dense(2000),
         # tf.keras.layers.Dropout(0.2),
         # tf.keras.layers.Dense(3, activation='softmax') # We have only win/loss/draw, so value is 3
         # ])
