@@ -32,9 +32,9 @@ def main(args):
         x_train = np.zeros((board_state_count,75),dtype=int)
         #print("X train is \n",x_train)
 
-        # Create array for the output layer
+        # Create array for the output layer with the proper shape
         # (For each board state, save the winner)
-        y_train = np.zeros(board_state_count,dtype=int)
+        y_train = tf.keras.utils.to_categorical(np.zeros(board_state_count,dtype=int),3)
         #print("Y train is \n",y_train)
 
         # Create indexes for game and board
