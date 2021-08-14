@@ -1,6 +1,6 @@
 # Bandit Agent
 
-Description
+## Description
 
 In the lecture, we learned about the k-armed Bandit problem. We saw several strategies to find the best reward in this general setting (epsilon-greedy, upper-confidence bound, etc). Furthermore, we saw how a strategy for the k-armed bandit problem can be applied to finding an optimal move in a simple turn-based two player game using simulations. In this exercise, we give you a Python framework to apply your knowledge in practice for the following game.
 
