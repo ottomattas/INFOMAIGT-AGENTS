@@ -14,7 +14,7 @@ While we encourage creative solutions, we are aware that there are problem-speci
 
 
 
-How to use the code
+## How to use the code
 
 Make sure you followed the instructions on how to install Python on the "Implementation Projects" page, then download and unzip the attached files. The setup of the project is very straightforward:
 
@@ -41,7 +41,7 @@ to run 100 games on an 8x8 board with 500ms per move, printing only the final bo
 
 
 
-Implementing your agent
+## Implementing your agent
 
 In the provided code, you will find a bandit_agent.py file: this is where you should implement your agent. It has a make_move method that takes a Game object as a parameter. It also already takes care of measuring the time for your move. You can access the current board state via game.board. Note that for this assignment, you are not allowed to use knowledge about the objective shapes to help your agent decide which move to make (i.e. don't try to come up with a strategy yourself and program it into your agent).
 
@@ -51,7 +51,7 @@ Finally, a small hint: your agent will need to do a lot of simulations based on 
 
 
 
-Benchmarks
+## Benchmarks
 
 We will test your code on seven different cases. Here we give you the results of student submissions on three test cases we used last year. At least one of these cases will also be used this year. The cases were as follows:
 
@@ -72,6 +72,6 @@ Note that the tests are run on a fairly powerful PC (Core i9 9900K), your perfor
 
 
 
-Submission
+## Submission
 
 You will work on this project individually. You should submit only your bandit_agent.py file. Make sure to enter your name and student number in the space provided at the top of this file.
