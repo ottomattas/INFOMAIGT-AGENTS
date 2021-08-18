@@ -1,4 +1,6 @@
-Description
+# Monte Carlo Tree Search Agent
+
+## Description
 
 In the lecture, we learned about the Monte Carlo Tree Search (MCTS). We saw how it can be used to explore the game tree. Also, we saw how it can be used together with some base agent. In this exercise, you will take a random base agent for the same game as the previous project, and apply MCTS to it. In addition, you will implement an agent based on a score function.
 
@@ -10,13 +12,13 @@ While we encourage creative solutions, we forbid you to use neural networks in t
 
 
 
-How to use the code
+## How to use the code
 
 See the Bandit Agent assignment for a description of the main files and how to use them. The new template supplies two different agent files, score_agent.py and mcts_agent.py. These are currently both random agents, but your task is to turn the ScoreAgent class into an agent that plays the game according to a policy defined by some score function, and to turn the MCTSAgent class into an agent that performs MCTS, using roll-outs with random agents for the simulation.
 
 
 
-Benchmarks
+## Benchmarks
 
 We will test your MCTS agent on several different cases. Here we give you the results of student submissions on three test cases we used last year. At least one of these cases will also be used this year. The cases were as follows:
 
@@ -38,6 +40,6 @@ Note that the tests are run on a fairly powerful PC (Core i9 9900K), your perfor
 
 
 
-Submission
+## Submission
 
 You will work on this project individually. You should submit only your score_agent.py and mcts_agent.py files. Make sure to enter your name and student number in the space provided at the top of this file.
