@@ -12,8 +12,6 @@ How well does your agent perform against a random agent (see below for some benc
 Do you employ an agent based on simulations of the game.
 While we encourage creative solutions, we are aware that there are problem-specific ideas which work quite well in this scenario, but they will stop working in what is to come later in the course. This is also why we are not fixing the shapes we are using in advance. We want you to produce a general agent that can deal with many different situations.
 
-
-
 ## How to use the code
 
 Make sure you followed the instructions on how to install Python on the "Implementation Projects" page, then download and unzip the attached files. The setup of the project is very straightforward:
@@ -39,8 +37,6 @@ python main.py --games 100 --size 8 --time 500 --print-board final shapes.txt
 
 to run 100 games on an 8x8 board with 500ms per move, printing only the final board state.
 
-
-
 ## Implementing your agent
 
 In the provided code, you will find a bandit_agent.py file: this is where you should implement your agent. It has a make_move method that takes a Game object as a parameter. It also already takes care of measuring the time for your move. You can access the current board state via game.board. Note that for this assignment, you are not allowed to use knowledge about the objective shapes to help your agent decide which move to make (i.e. don't try to come up with a strategy yourself and program it into your agent).
@@ -48,8 +44,6 @@ In the provided code, you will find a bandit_agent.py file: this is where you sh
 You are free to modify any parts of the provided code that you wish, but keep in mind that you will only submit the bandit_agent.py file! Your agent should therefore not rely on changes to any other part of the code.
 
 Finally, a small hint: your agent will need to do a lot of simulations based on a random agent. It just so happens that a random agent is already implemented, as it is the opponent you will be playing against. An easy way to simulate a game is to create a copy of the board (look up how to create a deep copy in Python, to avoid modifying the original unintentionally) and then use the Game.from_board method to create a new game from the given board state, using two new random agents. Then you can just play the game by calling Game.play(), which returns the agent that won the game, or None if it was a tie.
-
-
 
 ## Benchmarks
 
@@ -69,8 +63,6 @@ grade	case 1	case 2	case 3
 As you can see, the submission that was graded a 10 is winning almost all its games. The submissions that received a 7 do well in some cases, but underperform in others. The submission that received a 3 has about the same performance as a random agent.
 
 Note that the tests are run on a fairly powerful PC (Core i9 9900K), your performance may be a bit worse in your local tests, as you will be able to perform fewer roll-outs in the given time.
-
-
 
 ## Submission
 
