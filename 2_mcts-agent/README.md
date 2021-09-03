@@ -10,13 +10,9 @@ How much does the random agent improve by applying MCTS? (80%)
 Does your score-based agent consistently beat a random agent? (20%)
 While we encourage creative solutions, we forbid you to use neural networks in this exercise. This is also why we are not fixing the shapes, board sizes and time-bounds we are using to test your agent. We want you to produce a general agent that can deal with many different situations.
 
-
-
 ## How to use the code
 
 See the Bandit Agent assignment for a description of the main files and how to use them. The new template supplies two different agent files, score_agent.py and mcts_agent.py. These are currently both random agents, but your task is to turn the ScoreAgent class into an agent that plays the game according to a policy defined by some score function, and to turn the MCTSAgent class into an agent that performs MCTS, using roll-outs with random agents for the simulation.
-
-
 
 ## Benchmarks
 
@@ -37,8 +33,6 @@ As you can see, the submission that was graded a 10 is winning almost all its ga
 The score agent should be able to win (almost) all games in every test case against a random agent.
 
 Note that the tests are run on a fairly powerful PC (Core i9 9900K), your performance may be a bit worse in your local tests, as you will be able to perform fewer roll-outs in the given time.
-
-
 
 ## Submission
 
