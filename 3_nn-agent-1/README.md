@@ -25,21 +25,12 @@ xxxx	xx
 .x
 .x
 
-
-
-
-
-
-
-
 The grade for this exercise is based on several criteria:
 
 How strong is your agent?
 How robust is your agent?
 Is your agent based on a neural network?
 The primary goal is to show that you understand how to train and use neural networks in the context of reinforcement learning.
-
-
 
 ## How to use the code
 
