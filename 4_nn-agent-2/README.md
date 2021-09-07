@@ -52,5 +52,3 @@ We will contact a few people to present. (Maybe 4 to 6.)
 ## Submission
 
 Please submit the neural_network_agent.py file containing your agent, as well as any files it needs to initialise the neural network you trained.
-
-
