@@ -6,23 +6,12 @@ In the lecture, we discussed the usage of neural networks for playing our mockup
 
 We will test your neural network agent against three different agents.
 
-an agent based on a score function
-a random agent
-a k-armed bandit agent
+1. an agent based on a score function
+2. a random agent
+3. a k-armed bandit agent
+
 The game will be played on a 5x5 board, using an L-shaped objective in four different orientations:
-
-xxx
-..x
-
-
-xx
-x.
-x.
-
-x..
-xxx	.x
-.x
-xx
+![L-shaped objectives for neural networks agent](nn2_shapes.png)
 
 The grade for this exercise is based on several criteria:
 
