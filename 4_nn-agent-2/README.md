@@ -2,7 +2,7 @@
 
 ## Description
 
-In the lecture, we discussed the usage of neural networks for playing our mockup game. In this exercise, you will create your own data. You will use this data in order to train a neural network. With this neural network, you will create a neural network agent.
+In the lecture, we discussed the usage of neural networks for playing our mockup game. In this exercise, you will **create** your own data. You will use this data in order to train a neural network. With this neural network, you will create a neural network agent.
 
 We will test your neural network agent against three different agents.
 
