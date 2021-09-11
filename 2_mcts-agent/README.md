@@ -24,7 +24,6 @@ We will test your MCTS agent on several different cases. Here we give you the re
 3. All rotations of a 4x2 L-shape, 8x8 board, 500ms per move
 
 In the table below, we show the performance of student submissions on these test cases. The format is wins/losses/draws.
-
 | grade         | case 1           | case 2        | case 3        |
 | ------------- | -------------    | ------------- | ------------- |
 | 10            | 943 / 28 / 29    | 100 / 0 / 0   | 100 / 0 / 0   |
