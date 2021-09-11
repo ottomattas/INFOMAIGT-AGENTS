@@ -1,4 +1,6 @@
 # INFOMAIGT - AGENTS
+###### *This is a submodule for the [INFOMAIGT](https://github.com/ottomattas/INFOMAIGT) repository.*
+
 AI for Game Technology - AGENTS
 
 - Course description: http://www.cs.uu.nl/education/vak/INFOMAIGT
