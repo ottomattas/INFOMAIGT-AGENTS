@@ -25,18 +25,11 @@ We will test your MCTS agent on several different cases. Here we give you the re
 
 In the table below, we show the performance of student submissions on these test cases. The format is wins/losses/draws.
 
-| grade | case 1          | case 2       | case 3      |
-| ----- | --------------- | ------------ | ----------- |
-| 10	| 943 / 28 / 29   | 100 / 0 / 0  | 100 / 0 / 0 |
-| 8     | 636 / 295 / 69  | 95 / 5 / 0   | 91 / 9 / 0  |
-| 6	    | 644 / 156 / 200 | 69 / 16 / 15 | 82 / 18 / 0 |
-
-
-| grade  | case 1 | case 2 | case 3 |
-| ------------- | ------------- | ------------- | ------------- |
-| 10  | 943 / 28 / 29  | 100 / 0 / 0  | 100 / 0 / 0  |
-| 8  | 636 / 295 / 69  | 95 / 5 / 0  | 91 / 9 / 0  |
-| 6  | 644 / 156 / 200  | 69 / 16 / 15  | 82 / 18 / 0  |
+| grade         | case 1           | case 2        | case 3        |
+| ------------- | -------------    | ------------- | ------------- |
+| 10            | 943 / 28 / 29    | 100 / 0 / 0   | 100 / 0 / 0   |
+| 8             | 636 / 295 / 69   | 95 / 5 / 0    | 91 / 9 / 0    |
+| 6             | 644 / 156 / 200  | 69 / 16 / 15  | 82 / 18 / 0   |
 
 As you can see, the submission that was graded a 10 is winning almost all its games. The submission that received an 8 does well in two cases, but underperforms in the first. The submission that received a 6 does better than a random agent, but there is a lot of room for improvement.
 
