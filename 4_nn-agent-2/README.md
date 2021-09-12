@@ -24,6 +24,7 @@ The primary goal is to show that you understand how to train and use neural netw
 In order to pass you should **significantly outperform a random agent**. We will also test it against bandit agents and a score function.
 
 ## How to use the code
+###### Template files provided in the course are uploaded to the [./Assets](./Assets) folder.
 
 See the Bandit agent assignment for a description of the main files and how to use them.
 

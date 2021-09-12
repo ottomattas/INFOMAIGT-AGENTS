@@ -22,6 +22,7 @@ The grade for this exercise is based on several criteria:
 The primary goal is to show that you understand how to train and use neural networks in the context of reinforcement learning.
 
 ## How to use the code
+###### Template files provided in the course are uploaded to the [./Assets](./Assets) folder.
 
 See the Bandit agent assignment for a description of the main files and how to use them.
 

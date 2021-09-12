@@ -14,6 +14,7 @@ Your agent should be able to work with any board size, objective shapes and time
 While we encourage creative solutions, we are aware that there are problem-specific ideas which work quite well in this scenario, but they will stop working in what is to come later in the course. This is also why we are not fixing the shapes we are using in advance. We want you to produce a general agent that can deal with many different situations.
 
 ## How to use the code
+###### Template files provided in the course are uploaded to the [./Assets](./Assets) folder.
 
 Make sure you followed the instructions on how to install Python on the "Implementation Projects" page, then download and unzip the attached files. The setup of the project is very straightforward:
 
