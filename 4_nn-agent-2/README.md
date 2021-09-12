@@ -11,7 +11,7 @@ We will test your neural network agent against three different agents.
 3. a k-armed bandit agent
 
 The game will be played on a 5x5 board, using an L-shaped objective in four different orientations:
-![L-shaped objectives for neural networks agent](nn2_shapes.png)
+![L-shaped objectives for neural networks agent](Assets/nn2_shapes.png)
 
 The grade for this exercise is based on several criteria:
 
