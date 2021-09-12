@@ -1,7 +1,6 @@
 # Neural Networks Agent - Part 1
 
 ## Description
-
 In the lecture, we discussed the usage of neural networks for playing our mockup game. In this exercise, you will use the data provided by us. You will use this data in order to train a neural network. With this neural network, you will create a neural network agent.
 
 We will test your neural network agent against three different agents.
@@ -22,7 +21,7 @@ The grade for this exercise is based on several criteria:
 The primary goal is to show that you understand how to train and use neural networks in the context of reinforcement learning.
 
 ## How to use the code
-###### Template files provided in the course are uploaded to the [./Assets](./Assets) folder.
+###### *Template files provided in the course are uploaded to the [./Assets](./Assets) folder.*
 
 See the Bandit agent assignment for a description of the main files and how to use them.
 
@@ -34,7 +33,6 @@ We added two options to the program to help with using training data.
 For the neural networks, you should use either the **tensorflow** or **pytorch** libraries. Please consult us first if you have some compelling reason to use a different library.
 
 ## Benchmarks
-
 We will test your code on five different cases. Here we give you the results of two test cases. Both of these cases will also be used. The cases were as follows:
 
 1. Random agent
@@ -50,5 +48,4 @@ Your agent will also be tested against a bandit agent. We don't give you this be
 If you perform as well as our neural network agent on all test cases you will get a 10. We will give you a description of our score-based agent on Saturday the 15th, i.e. after the deadline for the score function.
 
 ## Submission
-
 Please submit the **neural_network_agent.py** file containing your agent, as well as any files it needs to initialise the neural network you trained.
